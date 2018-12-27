@@ -98,12 +98,15 @@ class Button extends Component {
         }
         break
       }
-      case 'tertiary': {
+      case 'tertiary':
+      case 'danger-tertiary': {
         if (disabled) {
           classes += 'bg-transparent b--transparent c-disabled '
         } else {
           if (isGrouped) {
-            if (groupActive) {
+            if (groupError) {
+              classes += 'b--danger hover-b--danger '
+            } else if (groupActive) {
               classes += 'b--muted-2 '
             } else {
               if (groupHover) {
@@ -115,7 +118,10 @@ class Button extends Component {
           } else {
             classes += 'b--transparent hover-b--transparent '
           }
-          classes += 'bg-transparent c-action-primary hover-bg-muted-5 '
+          classes += 'bg-transparent hover-bg-muted-5 '
+
+          classes +=
+            variation === 'danger-tertiary' ? 'c-danger ' : 'c-action-primary '
         }
         break
       }
@@ -125,15 +131,6 @@ class Button extends Component {
         } else {
           classes +=
             'bg-danger b--danger c-on-danger hover-bg-danger hover-b--danger hover-c-on-danger '
-        }
-        break
-      }
-      case 'danger-tertiary': {
-        if (disabled) {
-          classes += 'bg-transparent b--transparent c-disabled '
-        } else {
-          classes +=
-            'bg-transparent b--transparent c-danger hover-b--transparent hover-bg-muted-5 '
         }
         break
       }
