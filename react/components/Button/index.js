@@ -31,10 +31,17 @@ class Button extends Component {
       isLoading,
       collapseLeft,
       collapseRight,
+      joinLeft,
+      joinRight,
+      joinTop,
+      joinBottom,
+      groupActive,
+      groupHover,
     } = this.props
 
     const disabled = this.props.disabled || isLoading
     const iconOnly = icon || this.props.iconOnly
+    const isJoined = joinLeft || joinRight || joinTop || joinBottom
 
     let classes = 'vtex-button bw1 ba fw5 br2 v-mid relative pa0 '
     let labelClasses = 'flex items-center justify-center h-100 pv2 '
@@ -95,8 +102,20 @@ class Button extends Component {
         if (disabled) {
           classes += 'bg-transparent b--transparent c-disabled '
         } else {
-          classes +=
-            'bg-transparent b--transparent c-action-primary hover-b--transparent hover-bg-muted-5 '
+          if (isJoined) {
+            if (groupActive) {
+              classes += 'b--muted-2 '
+            } else {
+              if (groupHover) {
+                classes += 'b--muted-3 '
+              } else {
+                classes += 'b--muted-4 hover-b--muted-3 '
+              }
+            }
+          } else {
+            classes += 'b--transparent hover-b--transparent '
+          }
+          classes += 'bg-transparent c-action-primary hover-bg-muted-5 '
         }
         break
       }
@@ -128,6 +147,42 @@ class Button extends Component {
       classes += 'w-100 '
     }
 
+    let style = {}
+
+    if (joinRight) {
+      style = {
+        ...style,
+        borderTopRightRadius: 0,
+        borderBottomRightRadius: 0,
+        borderRight: 'none',
+      }
+    }
+
+    if (joinLeft) {
+      style = {
+        ...style,
+        borderTopLeftRadius: 0,
+        borderBottomLeftRadius: 0,
+      }
+    }
+
+    if (joinTop) {
+      style = {
+        ...style,
+        borderTopRightRadius: 0,
+        borderTopLeftRadius: 0,
+      }
+    }
+
+    if (joinBottom) {
+      style = {
+        ...style,
+        borderBottomRightRadius: 0,
+        borderBottomLeftRadius: 0,
+        borderBottom: 'none',
+      }
+    }
+
     return (
       <button
         id={this.props.id}
@@ -146,7 +201,10 @@ class Button extends Component {
         onMouseUp={this.props.onMouseUp}
         onMouseDown={this.props.onMouseDown}
         ref={this.props.forwardedRef}
-        style={iconOnly ? { fontSize: 0 } : {}}>
+        style={{
+          ...style,
+          ...(iconOnly && { fontSize: 0 }),
+        }}>
         {isLoading ? (
           <Fragment>
             <span className="top-0 left-0 w-100 h-100 absolute flex justify-center items-center">
@@ -233,6 +291,24 @@ Button.propTypes = {
   collapseLeft: PropTypes.bool,
   /** Cancels out right padding */
   collapseRight: PropTypes.bool,
+  /** @ignore For internal use
+   * Flattens the left border, to join with other components.  */
+  joinLeft: PropTypes.bool,
+  /** @ignore For internal use
+   * Flattens the right border, to join with other components.  */
+  joinRight: PropTypes.bool,
+  /** @ignore For internal use
+   * Flattens the top border, to join with other components.  */
+  joinTop: PropTypes.bool,
+  /** @ignore For internal use
+   * Flattens the bottom border, to join with other components.  */
+  joinBottom: PropTypes.bool,
+  /** @ignore For internal use
+   * State when the group the button belongs to is hovered */
+  groupHover: PropTypes.bool,
+  /** @ignore For internal use
+   * State when the group the button belongs to is active/on focus */
+  groupActive: PropTypes.bool,
 }
 
 export default withForwardedRef(Button)
