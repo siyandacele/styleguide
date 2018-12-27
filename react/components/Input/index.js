@@ -84,11 +84,10 @@ class Input extends Component {
       prefix,
       suffix: suffixProp,
       suffixIcon,
+      groupLeft,
+      groupRight,
+      groupTop,
       groupBottom,
-      joinLeft,
-      joinRight,
-      joinTop,
-      joinBottom,
     } = this.props
     const { active } = this.state
 
@@ -170,7 +169,7 @@ class Input extends Component {
 
     let style = {}
 
-    if (joinRight) {
+    if (groupRight) {
       style = {
         ...style,
         borderTopRightRadius: 0,
@@ -179,7 +178,7 @@ class Input extends Component {
       }
     }
 
-    if (joinLeft) {
+    if (groupLeft) {
       style = {
         ...style,
         borderTopLeftRadius: 0,
@@ -187,7 +186,7 @@ class Input extends Component {
       }
     }
 
-    if (joinTop) {
+    if (groupTop) {
       style = {
         ...style,
         borderTopRightRadius: 0,
@@ -195,7 +194,7 @@ class Input extends Component {
       }
     }
 
-    if (joinBottom) {
+    if (groupBottom) {
       style = {
         ...style,
         borderBottomRightRadius: 0,
@@ -391,17 +390,17 @@ Input.propTypes = {
   /** onMouseOut event */
   onMouseOut: PropTypes.func,
   /** @ignore For internal use
-   * Flattens the left border, to join with other components.  */
-  joinLeft: PropTypes.bool,
+   * Flattens the left border, to group with other components.  */
+  groupLeft: PropTypes.bool,
   /** @ignore For internal use
-   * Flattens the right border, to join with other components.  */
-  joinRight: PropTypes.bool,
+   * Flattens the right border, to group with other components.  */
+  groupRight: PropTypes.bool,
   /** @ignore For internal use
-   * Flattens the top border, to join with other components.  */
-  joinTop: PropTypes.bool,
+   * Flattens the top border, to group with other components.  */
+  groupTop: PropTypes.bool,
   /** @ignore For internal use
-   * Flattens the bottom border, to join with other components.  */
-  joinBottom: PropTypes.bool,
+   * Flattens the bottom border, to group with other components.  */
+  groupBottom: PropTypes.bool,
   /** @ignore For internal use
    * State when the group the button belongs to is hovered */
 }

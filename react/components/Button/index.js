@@ -31,17 +31,17 @@ class Button extends Component {
       isLoading,
       collapseLeft,
       collapseRight,
-      joinLeft,
-      joinRight,
-      joinTop,
-      joinBottom,
+      groupLeft,
+      groupRight,
+      groupTop,
+      groupBottom,
       groupActive,
       groupHover,
     } = this.props
 
     const disabled = this.props.disabled || isLoading
     const iconOnly = icon || this.props.iconOnly
-    const isJoined = joinLeft || joinRight || joinTop || joinBottom
+    const isGrouped = groupLeft || groupRight || groupTop || groupBottom
 
     let classes = 'vtex-button bw1 ba fw5 br2 v-mid relative pa0 '
     let labelClasses = 'flex items-center justify-center h-100 pv2 '
@@ -102,7 +102,7 @@ class Button extends Component {
         if (disabled) {
           classes += 'bg-transparent b--transparent c-disabled '
         } else {
-          if (isJoined) {
+          if (isGrouped) {
             if (groupActive) {
               classes += 'b--muted-2 '
             } else {
@@ -149,7 +149,7 @@ class Button extends Component {
 
     let style = {}
 
-    if (joinRight) {
+    if (groupRight) {
       style = {
         ...style,
         borderTopRightRadius: 0,
@@ -158,7 +158,7 @@ class Button extends Component {
       }
     }
 
-    if (joinLeft) {
+    if (groupLeft) {
       style = {
         ...style,
         borderTopLeftRadius: 0,
@@ -166,7 +166,7 @@ class Button extends Component {
       }
     }
 
-    if (joinTop) {
+    if (groupTop) {
       style = {
         ...style,
         borderTopRightRadius: 0,
@@ -174,7 +174,7 @@ class Button extends Component {
       }
     }
 
-    if (joinBottom) {
+    if (groupBottom) {
       style = {
         ...style,
         borderBottomRightRadius: 0,
@@ -292,17 +292,17 @@ Button.propTypes = {
   /** Cancels out right padding */
   collapseRight: PropTypes.bool,
   /** @ignore For internal use
-   * Flattens the left border, to join with other components.  */
-  joinLeft: PropTypes.bool,
+   * Flattens the left border, to group with other components.  */
+  groupLeft: PropTypes.bool,
   /** @ignore For internal use
-   * Flattens the right border, to join with other components.  */
-  joinRight: PropTypes.bool,
+   * Flattens the right border, to group with other components.  */
+  groupRight: PropTypes.bool,
   /** @ignore For internal use
-   * Flattens the top border, to join with other components.  */
-  joinTop: PropTypes.bool,
+   * Flattens the top border, to group with other components.  */
+  groupTop: PropTypes.bool,
   /** @ignore For internal use
-   * Flattens the bottom border, to join with other components.  */
-  joinBottom: PropTypes.bool,
+   * Flattens the bottom border, to group with other components.  */
+  groupBottom: PropTypes.bool,
   /** @ignore For internal use
    * State when the group the button belongs to is hovered */
   groupHover: PropTypes.bool,
