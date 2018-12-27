@@ -37,6 +37,7 @@ class Button extends Component {
       groupBottom,
       groupActive,
       groupHover,
+      groupError,
     } = this.props
 
     const disabled = this.props.disabled || isLoading
@@ -306,6 +307,9 @@ Button.propTypes = {
   /** @ignore For internal use
    * State when the group the button belongs to is active/on focus */
   groupActive: PropTypes.bool,
+  /** @ignore For internal use
+   * State when the group the button belongs to is on an error state */
+  groupError: PropTypes.bool,
 }
 
 export default withForwardedRef(Button)
