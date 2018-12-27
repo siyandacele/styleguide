@@ -37,6 +37,14 @@ class Input extends Component {
     }
   }
 
+  handleMouseOver = event => {
+    this.props.onMouseOver && this.props.onMouseOver(event)
+  }
+
+  handleMouseOut = event => {
+    this.props.onMouseOut && this.props.onMouseOut(event)
+  }
+
   handleBlur = event => {
     if (!this.props.readOnly) {
       this.setState({ active: false })
@@ -77,6 +85,10 @@ class Input extends Component {
       suffix: suffixProp,
       suffixIcon,
       groupBottom,
+      joinLeft,
+      joinRight,
+      joinTop,
+      joinBottom,
     } = this.props
     const { active } = this.state
 
@@ -156,6 +168,42 @@ class Input extends Component {
         break
     }
 
+    let style = {}
+
+    if (joinRight) {
+      style = {
+        ...style,
+        borderTopRightRadius: 0,
+        borderBottomRightRadius: 0,
+        borderRight: 'none',
+      }
+    }
+
+    if (joinLeft) {
+      style = {
+        ...style,
+        borderTopLeftRadius: 0,
+        borderBottomLeftRadius: 0,
+      }
+    }
+
+    if (joinTop) {
+      style = {
+        ...style,
+        borderTopRightRadius: 0,
+        borderTopLeftRadius: 0,
+      }
+    }
+
+    if (joinBottom) {
+      style = {
+        ...style,
+        borderBottomRightRadius: 0,
+        borderBottomLeftRadius: 0,
+        borderBottom: 'none',
+      }
+    }
+
     return (
       <label className="vtex-input w-100">
         {label && <span className={labelClasses}>{label}</span>}
@@ -176,6 +224,8 @@ class Input extends Component {
             ref={this.props.forwardedRef}
             onBlur={this.handleBlur}
             onFocus={this.handleFocus}
+            onMouseOver={this.handleMouseOver}
+            onMouseOut={this.handleMouseOut}
             onChange={this.handleChange}
             onKeyPress={this.handleKeyPress}
             onKeyDown={this.handleKeyDown}
@@ -208,6 +258,7 @@ class Input extends Component {
             value={this.props.value}
             id={this.props.id}
             style={{
+              ...style,
               WebkitAppearance: 'none',
             }}
           />
@@ -281,8 +332,6 @@ Input.propTypes = {
   dataAttributes: PropTypes.object,
   /** Spec attribute */
   defaultValue: PropTypes.string,
-  /** Whether the border should join with an element below */
-  groupBottom: PropTypes.bool,
   /** Spec attribute */
   id: PropTypes.string,
   /** Spec attribute */
@@ -337,6 +386,24 @@ Input.propTypes = {
   onFocus: PropTypes.func,
   /** onBlur event */
   onBlur: PropTypes.func,
+  /** onMouseOver event */
+  onMouseOver: PropTypes.func,
+  /** onMouseOut event */
+  onMouseOut: PropTypes.func,
+  /** @ignore For internal use
+   * Flattens the left border, to join with other components.  */
+  joinLeft: PropTypes.bool,
+  /** @ignore For internal use
+   * Flattens the right border, to join with other components.  */
+  joinRight: PropTypes.bool,
+  /** @ignore For internal use
+   * Flattens the top border, to join with other components.  */
+  joinTop: PropTypes.bool,
+  /** @ignore For internal use
+   * Flattens the bottom border, to join with other components.  */
+  joinBottom: PropTypes.bool,
+  /** @ignore For internal use
+   * State when the group the button belongs to is hovered */
 }
 
 export default withForwardedRef(Input)
