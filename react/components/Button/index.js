@@ -102,7 +102,12 @@ class Button extends Component {
       case 'tertiary':
       case 'danger-tertiary': {
         if (disabled) {
-          classes += 'bg-transparent b--transparent c-disabled '
+          classes += 'bg-transparent c-disabled '
+          if (isGrouped) {
+            classes += 'b--disabled '
+          } else {
+            classes += 'b--transparent '
+          }
         } else {
           if (isGrouped) {
             if (groupError) {
