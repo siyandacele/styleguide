@@ -174,7 +174,6 @@ class Input extends Component {
         ...style,
         borderTopRightRadius: 0,
         borderBottomRightRadius: 0,
-        borderRight: 'none',
       }
     }
 
@@ -183,6 +182,7 @@ class Input extends Component {
         ...style,
         borderTopLeftRadius: 0,
         borderBottomLeftRadius: 0,
+        borderLeft: 'none',
       }
     }
 
