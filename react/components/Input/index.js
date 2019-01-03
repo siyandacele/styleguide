@@ -88,9 +88,13 @@ class Input extends Component {
       groupRight,
       groupTop,
       groupBottom,
+      groupActive,
+      groupHover,
+      // groupError,
     } = this.props
     const { active } = this.state
 
+    const isGrouped = groupLeft || groupRight || groupTop || groupBottom
     const suffix = suffixProp || suffixIcon
 
     const dataAttrs = {}
@@ -125,12 +129,15 @@ class Input extends Component {
 
       if (error || errorMessage) {
         classes += 'b--danger hover-b--danger '
-      } else if (active) {
+      } else if (active || groupActive) {
         classes += 'b--muted-2 '
       } else {
-        classes += 'b--muted-4 '
-        if (!this.props.readOnly) {
-          classes += 'hover-b--muted-3 '
+        if (!isGrouped) {
+          classes += 'b--muted-4 hover-b--muted-3 '
+        } else if (groupHover) {
+          classes += 'b--muted-3 '
+        } else {
+          classes += 'b--muted-4 '
         }
       }
     }
@@ -403,6 +410,13 @@ Input.propTypes = {
   groupBottom: PropTypes.bool,
   /** @ignore For internal use
    * State when the group the button belongs to is hovered */
+  groupHover: PropTypes.bool,
+  /** @ignore For internal use
+   * State when the group the button belongs to is active/on focus */
+  groupActive: PropTypes.bool,
+  /** @ignore For internal use
+   * State when the group the button belongs to is on an error state */
+  groupError: PropTypes.bool,
 }
 
 export default withForwardedRef(Input)
