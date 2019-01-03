@@ -211,7 +211,10 @@ class Input extends Component {
     }
 
     return (
-      <label className="vtex-input w-100">
+      <label
+        className="vtex-input w-100"
+        onMouseOver={this.handleMouseOver}
+        onMouseOut={this.handleMouseOut}>
         {label && <span className={labelClasses}>{label}</span>}
         <div className="flex vtex-input-prefix__group relative">
           {prefix && (
@@ -230,8 +233,6 @@ class Input extends Component {
             ref={this.props.forwardedRef}
             onBlur={this.handleBlur}
             onFocus={this.handleFocus}
-            onMouseOver={this.handleMouseOver}
-            onMouseOut={this.handleMouseOut}
             onChange={this.handleChange}
             onKeyPress={this.handleKeyPress}
             onKeyDown={this.handleKeyDown}
