@@ -1,9 +1,8 @@
 ```js
 
 <InputWithAction
-  helpText="opa eita"
+  helpText="Help text goes here"
   buttonLabel="Submit"
-  loading
 />
 ```
 
