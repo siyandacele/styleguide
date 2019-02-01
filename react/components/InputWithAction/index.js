@@ -111,6 +111,11 @@ class InputWithAction extends Component {
     hover: false,
   }
 
+  constructor(props) {
+    super(props)
+    this.input = React.createRef()
+  }
+
   handleMouseOver = () => {
     this.setState({ hover: true })
   }
@@ -131,6 +136,11 @@ class InputWithAction extends Component {
 
   handleSubmit = event => {
     event.preventDefault()
+    if (this.props.loading || this.props.buttonLoading) {
+      return
+    }
+    const inputElement = this.input.current
+    event.value = this.props.value || (inputElement && inputElement.value)
     this.props.onSubmit && this.props.onSubmit(event)
   }
 
@@ -196,6 +206,7 @@ class InputWithAction extends Component {
           )}
           <div className="flex">
             <Input
+              ref={this.input}
               onMouseOver={this.handleMouseOver}
               onMouseOut={this.handleMouseOut}
               onFocus={this.handleFocus}
