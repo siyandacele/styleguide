@@ -153,6 +153,7 @@ class InputWithAction extends Component {
       disabled,
       buttonIcon,
       buttonDisabled,
+      buttonLoading,
       buttonLabel,
       buttonIconPosition,
       loading,
@@ -219,7 +220,7 @@ class InputWithAction extends Component {
               {...inputProps}
             />
             <ButtonWithIcon
-              isLoading={loading}
+              isLoading={loading || buttonLoading}
               variation="tertiary"
               type="submit"
               groupActive={active}
