@@ -1,9 +1,12 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+
 import ReactDatePicker, { registerLocale } from 'react-datepicker'
 import * as locales from 'date-fns/locale/index.js'
+
 import Input from '../Input'
 import IconCalendar from '../icon/Calendar'
+import IconClock from '../icon/Clock'
 
 import './react-datepicker.global.css'
 import { withForwardedRef, refShape } from '../../modules/withForwardedRef'
@@ -102,7 +105,7 @@ class DatePicker extends Component {
             errorMessage={this.props.errorMessage || this.state.errorMessage}
             helpText={this.props.helpText}
             label={this.props.label}
-            prefix={<IconCalendar />}
+            prefix={this.props.useTimeOnly ? <IconClock /> : <IconCalendar />}
             size={this.props.size}
           />
         }
@@ -110,7 +113,9 @@ class DatePicker extends Component {
         // until this PR  https://github.com/Hacker0x01/react-datepicker/pull/1602
         // is merged
         customInputRef={'legacyRef'}
-        dateFormat={this.props.useTime ? 'Pp' : 'P'}
+        dateFormat={
+          this.props.useTime ? (this.props.useTimeOnly ? 'p' : 'Pp') : 'P'
+        }
         disabled={this.props.disabled}
         excludeDates={this.props.excludeDates}
         excludeTimes={this.props.excludeTimes}
@@ -128,6 +133,7 @@ class DatePicker extends Component {
         required={this.props.required}
         selected={this.props.value}
         showTimeSelect={this.props.useTime}
+        showTimeSelectOnly={this.props.useTimeOnly}
         tabIndex={this.props.tabIndex}
         timeFormat="p"
         timeIntervals={this.props.timeIntervals}
@@ -161,6 +167,8 @@ DatePicker.propTypes = {
   align: PropTypes.oneOf(['left', 'right']),
   /** Spec attribute  */
   autoFocus: PropTypes.bool,
+  /** @ignore Date format */
+  dateFormat: PropTypes.string,
   /** Popper position in relation to the input */
   direction: PropTypes.oneOf(['down', 'up']),
   /** Spec attribute  */
@@ -211,6 +219,8 @@ DatePicker.propTypes = {
   timeIntervals: PropTypes.number,
   /** Flag used for indicating whether to use time or not  */
   useTime: PropTypes.bool,
+  /** @ignore Forwarded Ref */
+  useTimeOnly: PropTypes.bool,
   /** Value of the selected date  */
   value: PropTypes.instanceOf(Date).isRequired,
 }
