@@ -7,12 +7,20 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
-## [8.51.0] - 2019-05-29
 ### Added
+
+- **TimePicker** new component!
+
+## [8.51.0] - 2019-05-29
+
+### Added
+
 - **DatePicker** Add `positionFixed` prop, which fixes issues related to `overflow: hidden`.
 
 ## [8.50.1] - 2019-05-28
+
 ### Changed
+
 - Only automatically add `key` prop to `Tabs` children when the prop is not present.
 
 ## [8.50.0] - 2019-05-28
@@ -23,7 +31,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - **EXPERIMENTAL_Select** horizontal growth to make it simpler to the user.
 
 ## [8.49.1] - 2019-05-26
+
 ### Changed
+
 - **ButtonWithIcon** Prop `icon` is not required anymore.
 
 ## [8.49.0] - 2019-05-24
@@ -337,8 +347,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Fixed error caused by `instanceof` `null` on `withFowardedRef` module.
 
 ## [8.27.2] - 2019-04-03
-
-## [8.27.1] - 2019-03-28
 
 ### Fixed
 
