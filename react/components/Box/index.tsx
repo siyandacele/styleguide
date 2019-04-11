@@ -1,7 +1,12 @@
-import React from 'react'
+import React, { PropsWithChildren } from 'react'
 import PropTypes from 'prop-types'
 
-const Box = ({ children, noPadding }) => {
+interface Props {
+  children: React.ReactNode
+  noPadding?: boolean
+}
+
+const Box: React.FunctionComponent<Props> = ({ children, noPadding }) => {
   const padding = noPadding ? '' : 'pa7-ns'
   return (
     <div
