@@ -168,6 +168,7 @@ class Toggle extends Component {
             className="dn"
             disabled={disabled}
             checked={checked}
+            readOnly={!this.props.onChange}
             onClick={e => {
               e.stopPropagation()
               if (typeof this.props.onClick === 'function') {
