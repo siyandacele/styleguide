@@ -165,10 +165,15 @@ class Toggle extends Component {
           <input
             id={id || undefined}
             type="checkbox"
-            className="h1 w1 absolute o-0"
+            className="dn"
             disabled={disabled}
             checked={checked}
-            onClick={this.props.onClick}
+            onClick={e => {
+              e.stopPropagation()
+              if (typeof this.props.onClick === 'function') {
+                this.props.onClick(e)
+              }
+            }}
             onChange={this.props.onChange}
             tabIndex={0}
           />
