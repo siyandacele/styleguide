@@ -248,7 +248,7 @@ class Toolbar extends PureComponent {
                             {schema.properties[field].title || field}
                           </span>
                           <Toggle
-                            size="small"
+                            size="regular"
                             checked={!hiddenFields.includes(field)}
                           />
                         </div>
