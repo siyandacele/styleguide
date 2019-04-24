@@ -1,8 +1,20 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 
-class Card extends PureComponent {
-  render() {
+interface Props {
+  children: React.ReactNode
+  noPadding: boolean
+}
+
+class Card extends PureComponent<Props> {
+  public static propTypes = {
+    /** Content of the card */
+    children: PropTypes.node.isRequired,
+    /** Use the full size of the card. */
+    noPadding: PropTypes.bool,
+  }
+
+  public render() {
     const { children, noPadding } = this.props
     const padding = noPadding ? '' : 'pa6'
 
@@ -14,13 +26,6 @@ class Card extends PureComponent {
       </div>
     )
   }
-}
-
-Card.propTypes = {
-  /** Content of the card */
-  children: PropTypes.node.isRequired,
-  /** Use the full size of the card. */
-  noPadding: PropTypes.bool,
 }
 
 export default Card
