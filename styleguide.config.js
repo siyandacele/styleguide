@@ -133,6 +133,7 @@ module.exports = {
             'react/components/ColorPicker/index.js',
             'react/components/DatePicker/index.js',
             'react/components/Dropdown/index.js',
+            'react/components/Dropzone/index.js',
             'react/components/Input/index.js',
             'react/components/InputCurrency/index.js',
             'react/components/InputPassword/index.js',
