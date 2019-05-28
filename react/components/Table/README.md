@@ -1762,6 +1762,15 @@ class ResourceListExample extends React.Component {
           newLine: {
             label: 'New',
             handleCallback: () => alert('handle new line callback'),
+            actions: [
+              'General',
+              'Desktop & Screen Saver',
+              'Dock',
+              'Language & Region',
+            ].map(label => ({
+              label,
+              onClick: () => {},
+            })),
           },
         }}
         pagination={{

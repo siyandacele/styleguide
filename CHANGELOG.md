@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Changed
+
+- **Table** new line button with action replaced by a **ButtonGroup**.
+
+### Removed
+
+- **EXPERIMENTAL_ButtonWithAction** in favor of ButtonGroup.
+
 ## [8.50.0] - 2019-05-28
 
 ### Changed
@@ -15,7 +23,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - **EXPERIMENTAL_Select** horizontal growth to make it simpler to the user.
 
 ## [8.49.1] - 2019-05-26
+
 ### Changed
+
 - **ButtonWithIcon** Prop `icon` is not required anymore.
 
 ## [8.49.0] - 2019-05-24
